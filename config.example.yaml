@@ -1,0 +1,49 @@
+# Copy this file to config.yaml and edit it.
+# Any value can reference an environment variable, e.g. "${SMTP_PASSWORD}",
+# so secrets never have to live in this file.
+
+defaults:
+  currency: "$"
+  min_drop_percent: 0      # ignore drops smaller than this percentage
+  min_drop_amount: 0       # ignore drops smaller than this amount
+
+products:
+  - name: Example book
+    url: https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html
+    # Optional CSS selector for the price element. If omitted, the price is
+    # detected automatically (structured data, meta tags, common class names).
+    selector: p.price_color
+    currency: "£"
+
+  # - name: Some gadget
+  #   url: https://www.example-shop.com/products/gadget
+  #   target_price: 199.99      # shown in the alert when price is at/below it
+  #   only_below_target: false  # true = only alert when price <= target_price
+  #   min_drop_percent: 5
+
+# Optional extra HTTP headers sent with every request
+# headers:
+#   Cookie: "country=US"
+
+notifications:
+  # Email via SMTP. For Gmail, create an App Password:
+  # https://myaccount.google.com/apppasswords
+  email:
+    enabled: true
+    smtp_host: smtp.gmail.com
+    smtp_port: 587            # 587 = STARTTLS, 465 = SSL
+    username: "${SMTP_USERNAME}"
+    password: "${SMTP_PASSWORD}"
+    to: "${EMAIL_TO}"         # comma-separated list, or a YAML list
+
+  # Free phone push notifications via https://ntfy.sh — install the ntfy app
+  # and subscribe to the same (hard to guess) topic name.
+  ntfy:
+    enabled: false
+    topic: "${NTFY_TOPIC}"
+    # server: https://ntfy.sh
+
+  # Slack or Discord incoming webhook
+  webhook:
+    enabled: false
+    url: "${WEBHOOK_URL}"
