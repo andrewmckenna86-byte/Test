@@ -1,0 +1,14 @@
+{
+  "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html": {
+    "history": [
+      {
+        "price": 51.77,
+        "time": "2026-11-18T13:19:58+00:00"
+      }
+    ],
+    "last_checked": "2026-11-18T13:19:58+00:00",
+    "last_price": 51.77,
+    "lowest_price": 51.77,
+    "name": "Example book"
+  }
+}
